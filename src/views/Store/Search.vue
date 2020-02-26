@@ -6,6 +6,18 @@
             <Card></Card>
             <Card></Card>
             <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
 
         </div>
         <p> ❮ 1 2 3 ❯</p>
@@ -14,10 +26,10 @@
 </template>
 
 <script>
-    import Card from '../components/Card.vue'
+    import Card from '../../components/Card.vue'
 
     export default {
-        "name": "Category",
+        "name": "Search",
         components: {
             Card,
         },

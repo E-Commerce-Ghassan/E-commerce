@@ -1,24 +1,41 @@
 <template>
-    <div id="header-container">
-        <div id="header">
-            <div class="input-group mb-3c search">
-                <div class="input-group-append">
-                    <button @click="$router.push({ path: 'Search' ,params:searched})" class="btn btn-danger search-btn"
-                            type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <input class="form-control seach" placeholder="ابحث" type="text" v-model="searched">
-
-            </div>
-            <h2 @click="$router.push({ path: '/' })" class="logo">لوجو</h2>
-            <div v-click-outside="HideLogin">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div v-click-outside="HideLogin" >
                 <h4 @click="login=!login" class="user-login-text" v-if="!loggedIn">تسجيل الدخول</h4>
                 <img @click="login=!login" id="loagin" src="../assets/login-icon.svg" v-if="loggedIn"/>
-                <Login v-if="login"></Login>
+                <Login v-if="login" @Login="Login"></Login>
             </div>
+            <router-link class="nav-link logo navbar-brand navbar-toggler" to="/Store/HomePage">لوجو</router-link>
 
-        </div>
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active ">
+                        <div class="hidden-xs collapse navbar-collapse navbar-left">
+                            <router-link class="nav-link logo navbar-brand" to="/Store/HomePage">لوجو</router-link>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group mb-3c search">
+                        <div class="input-group-append">
+                            <button @click="$router.push({ path: '/Store/Search' ,params:searched})"
+                                    class="btn btn-danger search-btn"
+                                    type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <input class="form-control seach" placeholder="ابحث" type="text" v-model="searched">
+                    </div>
+                </form>
+            </div>
+        </nav>
         <partial-header></partial-header>
     </div>
 </template>
@@ -41,6 +58,7 @@
                 login: false,
                 loggedIn: false,
                 searched: null,
+                loginData:null,
 
             }
         },
@@ -51,12 +69,34 @@
             HideLogin() {
                 this.login = false;
             },
-
+            Login(loginData){
+                this.loginData=loginData;
+                this.$emit('Login', loginData)
+            }
         }
     }
 </script>
 
 <style scoped>
+    .navbar {
+        flex-direction: row-reverse;
+    }
+    @media (min-width: 576px) {
+        .form-inline .custom-select, .form-inline .input-group {
+            width: auto;
+            margin: auto;
+        }
+    }
+    .navbar-nav {
+        margin-left: auto;
+        margin-right: auto !important;
+
+    }
+
+    #navbarSupportedContent {
+        flex-direction: row-reverse;
+    }
+
     #header-container {
         top: 0;
         right: 0;
@@ -109,17 +149,22 @@
     }
 
     .logo::first-letter {
-        color: #c82333;
+        color: #c82333 !important;
+        border: none !important;
     }
 
     .input-group-append > button {
         height: fit-content;
     }
 
-    .search {
-        flex: 3;
-        max-width: 30%;
-        margin-left: 20px;
+    .bg-light {
+        background-color: #e3e5e6 !important;
+        align-items: baseline;
+    }
+
+    .navbar-light .navbar-toggler {
+        color: rgb(78, 78, 78);
+        border-color: #e3e5e6;
     }
 
     img {

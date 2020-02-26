@@ -1,6 +1,6 @@
 <template>
     <div id="app-container">
-        <div id="home-container" v-bind:style="{'margin-top':topMargin+'px'}">
+        <div id="home-container" >
             <Card :imageLocation="require('@/assets/p.png')" title="sss"></Card>
             <Card :imageLocation="require('@/assets/prod2.png')" :title="'aaa'"></Card>
             <Card :imageLocation="require('@/assets/prod3.jpg')" :title="'كمرا'"></Card>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Card from '../components/Card.vue'
+    import Card from '../../components/Card.vue'
 
     export default {
         "name": "HomePage",
@@ -27,15 +27,9 @@
         },
 
         mounted() {
-            this.getHight();
 
         },
-        methods: {
-            getHight() {
-                this.topMargin = this.$refs.header.HeaderHeight() + 10;
-
-            }
-        }
+        methods: {}
     }
 </script>
 

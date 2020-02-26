@@ -2,7 +2,7 @@
     <div id="card-container">
         <div id="details">
             <div id="img-cont">
-                <img height="400" src="../assets/prod5.jpg" width="400"/>
+                <img height="400" src="../../assets/prod5.jpg" width="400"/>
             </div>
             <div class="desc">
                 <h1 class="card-title">Canon EOS كمرا</h1>
